@@ -16,8 +16,8 @@
         <input type="number" id="numDice" value="2" min="1" max="8">
     </div>
     <div id="dContainer">
-        <img id="dice1" src="C:\Users\Crystal Jenkins\Pictures\DiceSide1.png" alt="Dice 1" width="100">
-        <img id="dice2" src="C:\Users\Crystal Jenkins\Pictures\DiceSide1.png" alt="Dice 2" width="100">
+        <img id="dice1" src="DiceSide1.png" alt="Dice 1" width="100">
+        <img id="dice2" src="DiceSide1.png" alt="Dice 2" width="100">
     </div>
     <div id="sum">
         <h2>
@@ -49,7 +49,7 @@ function DiceRoll() {
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         sum += randomNumber;
         var diceImg = document.createElement("img");
-        diceImg.src = "C:\\Users\\Crystal Jenkins\\Pictures\\DiceSide" + randomNumber + ".png";
+        diceImg.src = "DiceSide" + randomNumber + ".png";
         diceImg.alt = "Dice " + (i + 1);
         diceImg.width = 100;
         dContainer.appendChild(diceImg);
