@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quiz Game</title>
+        <link rel="stylesheet" href="Style3.css"/>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>
+                Quiz Game
+            </h1>
+            <p>
+                This quiz is all about Tv Shows!
+            </p>
+            <div id="quizContent">
+                <p class="question" id="question">
+                </p>
+                <ul class="answers" id="answers">
+                </ul>
+                <button id="nextButton" onclick="nextQuestion()">
+                    <span>
+                    Next
+                    </span>
+                </button>
+            </div>
+            <div id="result" class="result" style="display: none;">
+                <h2>Your Score: 
+                    <span id="score">
+                    </span>
+                </h2>
+                <button onclick="restartQuiz()">
+                    Retry Quiz?
+                </button>
+                <a href="main.html">
+                    <button>
+                        Selection Page
+                    </button>
+            </div>
+        </div>
+
+<script>
+     const quizQuestions = [
+                {
+                    question: "Which show makes you think about life?",
+                    answers: ["Pantheon", "Love Game", "Pearl Story"],
+                    correctAnswer: "Pantheon"
+                },
+                {
+                    question: "Which show teaches you that you don't have to be afraid of the unknown?",
+                    answers: ["ParadisePD", "Supernatural", "Arcane"],
+                    correctAnswer: "Supernatural"
+                },
+                {
+                    question: "Which show teaches you to always take care of your things?",
+                    answers: ["Glitch Techs", "Bee&Puppycat", "Bridgeton"],
+                    correctAnswer: "Glitch Techs"
+                },
+                {
+                    question: "Which show gives conspiceray theorists proof that their theories are true?",
+                    answers: ["Bee&Puppycat", "Love Game", "Inside Job"],
+                    correctAnswer: "Inside Job"
+                },
+                {
+                    question: "Which show had the worst ending?",
+                    answers: ["Grimmsburg", "Q-Force", "Locke&Key"],
+                    correctAnswer: "Locke&Key"
+                },
+                {
+                    question: "Which show is the most funniest?",
+                    answers: ["Wish Dragon", "Big Mouth", "Mulligon"],
+                    correctAnswer: "Big Mouth"
+                },
+                {
+                    question: "Which show is the best to watch to get motivation to study?",
+                    answers: ["Hello My Twenties", "Law School", "Blue Period"],
+                    correctAnswer: "Blue Period"
+                },
+                {
+                    question: "Which show keeps you up at night in fear?",
+                    answers: ["Nano", "Sweet Home", "Hellbound"],
+                    correctAnswer: "Hellbound"
+                },
+                {
+                    question: "Which show teaches about friendship the best?",
+                    answers: ["My Little Pony", "Trolls", "Rising Impact"],
+                    correctAnswer: "My Little Pony"
+                },
+                {
+                    question: "Which show is the most romataic to watch?",
+                    answers: ["Perfect Match", "Love Game", "Pearl Story"],
+                    correctAnswer: "Love Game"
+                }
+            ];
+    
+            let currentQuestionIndex = 0;
+            let score = 0;
+function loadQuestion() {
+    const questionObj = quizQuestions[currentQuestionIndex];
+    document.getElementById("question").textContent = questionObj.question;
+    const answersList = document.getElementById("answers");
+    answersList.innerHTML = ''; 
+    
+questionObj.answers.forEach(answer => {
+    const li = document.createElement("li");
+    li.textContent = answer;
+    li.onclick = function() { checkAnswer(answer); };
+    answersList.appendChild(li);
+    });
+    document.getElementById("nextButton").style.display = 'none';
+    }
+    
+        
+            function checkAnswer(selectedAnswer) {
+                const questionObj = quizQuestions[currentQuestionIndex];
+                if (selectedAnswer === questionObj.correctAnswer) {
+                    score++;
+                }
+    
+                const allAnswers = document.querySelectorAll("#answers li");
+                allAnswers.forEach(answer => {
+                    answer.style.pointerEvents = 'none'; 
+                });
+    
+                document.getElementById("nextButton").style.display = 'block';
+            }
+            function nextQuestion() {
+                currentQuestionIndex++;
+    
+                if (currentQuestionIndex < quizQuestions.length) {
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }
+            function showResult() {
+                document.getElementById("quizContent").style.display = 'none';
+                document.getElementById("result").style.display = 'block';
+                document.getElementById("score").textContent = score + " / " + quizQuestions.length;
+            }
+            function restartQuiz() {
+                score = 0;
+                currentQuestionIndex = 0;
+                document.getElementById("quizContent").style.display = 'block';
+                document.getElementById("result").style.display = 'none';
+                loadQuestion();
+            }
+            loadQuestion();
+        </script>
+    </body>
+</html>

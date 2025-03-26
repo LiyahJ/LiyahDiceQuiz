@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rolling Dice</title>
+    <link rel="stylesheet" href="Style2.css"/>
+</head>
+
+<body>
+    <div>
+        <h1>Roll the dice to decide your fate!</h1>
+    </div>
+    <div>
+        <label for="numDice">
+            How Many Dice Would You Like to Roll?:
+        </label>
+        <input type="number" id="numDice" value="2" min="1" max="8">
+    </div>
+    <div id="dContainer">
+        <img id="dice1" src="C:\Users\Crystal Jenkins\Pictures\DiceSide1.png" alt="Dice 1" width="100">
+        <img id="dice2" src="C:\Users\Crystal Jenkins\Pictures\DiceSide1.png" alt="Dice 2" width="100">
+    </div>
+    <div id="sum">
+        <h2>
+            Sum:
+        </h2>
+    </div>
+    <button type="button" onClick="DiceRoll()">
+        <span>
+        Roll the Dice!
+        </span>
+    </button>
+    <a href="main.html">
+        <button>
+            Selection Page
+        </button>
+        </a>
+</body>
+</html>
+
+<script>
+function DiceRoll() {
+    setTimeout(function(){
+        var numDice = document.getElementById("numDice").value;
+        var dContainer = document.getElementById("dContainer");  
+            dContainer.innerHTML = "";
+    
+        var sum = 0;
+    for (var i = 0; i < numDice; i++) {
+        var randomNumber = Math.floor(Math.random() * 6) + 1;
+        sum += randomNumber;
+        var diceImg = document.createElement("img");
+        diceImg.src = "C:\\Users\\Crystal Jenkins\\Pictures\\DiceSide" + randomNumber + ".png";
+        diceImg.alt = "Dice " + (i + 1);
+        diceImg.width = 100;
+        dContainer.appendChild(diceImg);
+    }
+        document.getElementById("sum").innerHTML= "<h2>Sum:" + sum + "</h2>";
+    }, 1000);
+}
+</script>
